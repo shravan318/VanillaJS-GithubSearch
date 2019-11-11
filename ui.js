@@ -5,6 +5,7 @@ class UI {
 
   showProfile(user) {
     this.profile.innerHTML = `
+        <div class="container">
         <div class="card card-body mb-3">
             <div class="row">
             <div class="md-3">
@@ -28,7 +29,31 @@ class UI {
             </div>
         </div>
         <h3 class="page-heading mb-3">Latest Repos</h3>
-        <div id="repos"></div>
+        <div id="repos"></div></div>
     `;
+  }
+
+  clearProfile() {
+    this.profile.innerHTML = "";
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alert");
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+  showAlert(msg, className) {
+    this.clearAlert();
+    const div = document.createElement("div");
+    div.className = className;
+    div.appendChild(document.createTextNode(msg));
+    const container = document.querySelector(".searchContainer");
+    const search = document.querySelector(".search");
+    container.insertBefore(div, search);
+
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
   }
 }
